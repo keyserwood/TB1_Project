@@ -47,3 +47,8 @@ Pour l'instant on peut consulter & modifier des articles
 
 > La modification a bien lieu en BD 
 
+### Features à implémenter
+* Fonctionnalité d'ajout & Suppression (Csrf token)
+* Ajout de l'entité User : Créer un lien entre les articles & les utilisateurs 
+> Définir les ROLES : Sécurité
+* Ajout de catégories pour les articles
