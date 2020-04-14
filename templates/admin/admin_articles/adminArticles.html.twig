@@ -35,10 +35,10 @@
         {% for article in articles %}
             <tr>
                 <td>
-                    {{ article.Title }}
+                    {{ article.title }}
                 </td>
                 <td>
-                    {{ article.Content }}
+                    {{ article.content }}
                 </td>
                 <td>
                         <a href="{{ path("modifArticles",{'id':article.id}) }}" class="btn btn-primary">
