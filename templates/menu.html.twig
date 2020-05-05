@@ -6,26 +6,32 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Articles
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ path('articles') }}">Consulter</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Articles
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('articles') }}">Consulter</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{path("admin_articles")}}">Editer</a>
+                     <a class="dropdown-item" href="{{path("admin_articles")}}">Editer</a>
+                    {% endif %}
                 </div>
             </li>
+            {% endif %}
+            {% if not app.user %}
             <li class="nav-item">
                 <a class="nav-link" href="{{path("inscription")}}">Inscription</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{path("login")}}">Login</a>
             </li>
+            {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{{path("logout")}}">Deconnexion</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
