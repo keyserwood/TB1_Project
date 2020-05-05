@@ -38,6 +38,11 @@ class Users
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="string", length=180, nullable=true)
+     */
+    private $email;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -111,6 +116,18 @@ class Users
                 $article->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
