@@ -5,11 +5,18 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity(
+ *     fields={"username","email"},
+ *     message="Le user ou email existe déjà"
+ * )
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -28,6 +35,9 @@ class Users
      */
     private $password;
 
+    /**
+     * @Assert\EqualTo(propertyPath="password",message="Les mdp ne correspondent pas")
+     */
     private $verifPassword;
 
 
@@ -91,9 +101,9 @@ class Users
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles()
     {
-        return $this->roles;
+        return [$this->roles];
     }
 
     public function setRoles(?string $roles): self
@@ -144,5 +154,11 @@ class Users
         $this->email = $email;
 
         return $this;
+    }
+    public function eraseCredentials()
+    {
+    }
+    public function getSalt()
+    {
     }
 }
