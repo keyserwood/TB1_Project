@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
+        Modification
+    </h1>
+    {{ form_start(form) }}
+
+    <div class="row m-2">
+        {{ form_row(form.username) }}
+
+    </div>
+    <div class="form-group m-2">
+        {{ form_row(form.email) }}
+    </div>
+    <div class="form-group m-2">
+        {{ form_row(form.password) }}
+    </div>
+    <div class="form-group m-2">
+        {{ form_row(form.verifPassword) }}
+    </div>
+    <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
+
+    {{ form_end(form) }}
+{% endblock %}

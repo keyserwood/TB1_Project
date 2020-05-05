@@ -23,7 +23,7 @@ class AdminArticlesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/admin/aliment/creation",name="creationArticle")
+     * @Route("/admin/article/creation",name="creationArticle")
      * @Route("/admin/article/{id}", name="modifArticles",methods="GET")
      */
     public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry)
