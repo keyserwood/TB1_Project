@@ -28,6 +28,9 @@ class Users
      */
     private $password;
 
+    private $verifPassword;
+
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -73,6 +76,17 @@ class Users
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+    public function getVerifPassword(): ?string
+    {
+        return $this->verifPassword;
+    }
+
+    public function setVerifPassword(string $verifPassword): self
+    {
+        $this->verifPassword = $verifPassword;
 
         return $this;
     }
