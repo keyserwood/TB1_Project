@@ -33,7 +33,7 @@
             </td>
         </tr>
         {% for article in articles %}
-            {% if article.author.id == userId %}
+            {% if article.author.id == app.user.id %}
             <tr>
                 <td>
                     {{ article.title }}
@@ -42,16 +42,16 @@
                     {{ article.content }}
                 </td>
                 <td>
-                    <a href="{{ path("modifArticlesUser",{'idu':app.user.id, 'ida':article.id}) }}" class="btn btn-primary">
+                    <a href="{{ path("modifArticlesUser",{'id':article.id}) }}" class="btn btn-primary">
                         Modifier
                     </a>
 
 
 
-                    <form method="post" action="{{ path('suppressionArticleUser',{'idu':app.user.id, 'ida':article.id}) }}" onsubmit="return confirm
+                    <form method="post" action="{{ path('suppressionArticleUser',{'id' :article.id}) }}" onsubmit="return confirm
 ('Confirmer la suppression');">
                         <input type="hidden" name="_method" value="SUP">
-                        <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id~app.user.id) }}">
                         <input type="submit" class="btn btn-danger" value="Supprimer">
                     </form>
                 </td>

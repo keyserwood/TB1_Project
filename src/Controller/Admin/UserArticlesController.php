@@ -26,7 +26,7 @@ class UserArticlesController extends AbstractController
     }
     /**
      * @Route("/user/{id}/article/creation",name="creationArticleUser")
-     * @Route("/user/{idu}/article/{ida}", name="modifArticlesUser",methods="GET")
+     * @Route("/user/article/{id}", name="modifArticlesUser",methods={"GET","POST"})
      */
     public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
@@ -38,9 +38,9 @@ class UserArticlesController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid())
         {
+            $article->setAuthor($user);
             $modif = $article->getId() !== null;
             $em = $managerRegistry->getManager();
-            $article->setAuthor($user);
             $em->persist($article);
             $em->flush();
             $this->addFlash("success", ($modif)? "La modification a été effectuée" : "L'ajout a été effectué");
@@ -51,11 +51,11 @@ class UserArticlesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/user/{idu}/article/{ida}", name="suppressionArticleUser",methods="SUP")
+     * @Route("/user/article/{id}", name="suppressionArticleUser",methods="SUP")
      */
     public function suppArticle(Articles $article, Request $request, ManagerRegistry $managerRegistry,UserInterface $user)
     {
-        if($this->isCsrfTokenValid("SUP".$article->getId(),$request->get('_token')))
+        if($this->isCsrfTokenValid("SUP".$article->getId().$user->getId(),$request->get('_token')))
         {
             $em = $managerRegistry->getManager();
             $em->remove($article);
