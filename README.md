@@ -67,7 +67,7 @@ Pour l'instant on peut consulter & modifier des articles
 
 > La modification a alors bien lieu en BD
 >
-> ![image-20200512112157302](image-20200512112230394)
+> ![image-20200512112157302](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512112157302.png)
 
 L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restrictions
 
