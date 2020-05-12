@@ -3,7 +3,7 @@
 {% block title %}Edition Articles{% endblock %}
 
 {% block body %}
-    {% if modif == null %}
+    {% if not modif  %}
         <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
             Modification
         </h1>
@@ -18,7 +18,7 @@
         </div>
         <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
     {% endif %}
-    {% if modif != null %}
+    {% if modif  %}
         {% if  article.author.id == app.user.id %}
             <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
                 Modification

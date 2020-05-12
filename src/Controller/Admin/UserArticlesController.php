@@ -30,18 +30,18 @@ class UserArticlesController extends AbstractController
      */
     public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
+        $modif = false;
         if (!$article)
         {
             $article = new Articles();
         }
         $form = $this->createForm(ArticlesType::class,$article);
         $form->handleRequest($request);
-        $modif = $article->getId() !== null;
         if($form->isSubmitted()&&$form->isValid())
         {
             $article->setAuthor($user);
-            $modif = $article->getId() !== null;
             $em = $managerRegistry->getManager();
+            $modif = $article->getId() !== null;
             $em->persist($article);
             $em->flush();
             $this->addFlash("success", ($modif)? "La modification a été effectuée" : "L'ajout a été effectué");

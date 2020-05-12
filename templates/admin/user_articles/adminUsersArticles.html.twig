@@ -11,9 +11,12 @@
             {{ message }}
         </div>
     {% endfor %}
-    <a href="{{ path("creationArticleUser",{'id':userId}) }}" class="btn btn-success m-2">
-        Ajouter
-    </a>
+
+    <form method="post" action="{{ path("creationArticleUser",{'id':userId}) }}" >
+        <input type="hidden" name="_token" value="0">
+        <input type="submit" class="btn btn-success m-2" value="Ajouter">
+    </form>
+
     <table class="table table-hover m-2 p-2">
         <tr class="table-active">
             <td>
@@ -45,6 +48,10 @@
                     <a href="{{ path("modifArticlesUser",{'id':article.id}) }}" class="btn btn-primary">
                         Modifier
                     </a>
+                    <form method="post" action="{{ path("modifArticlesUser",{'id':article.id}) }}" >
+                        <input type="hidden" name="_token" value="1">
+                        <input type="submit" class="btn btn-success m-2" value="Ajouter">
+                    </form>
 
 
 

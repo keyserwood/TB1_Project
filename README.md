@@ -47,8 +47,50 @@ Pour l'instant on peut consulter & modifier des articles
 
 > La modification a bien lieu en BD 
 
+#### Suppression d'un article 
+
+> Pour sécuriser la suppression en BD on utilise le Csrf Token qui garantit la sécurité du processus
+
+
+
+
+
 ### Features à implémenter
+
 * Fonctionnalité d'ajout & Suppression (Csrf token)
 * Ajout de l'entité User : Créer un lien entre les articles & les utilisateurs 
 > Définir les ROLES : Sécurité
 * Ajout de catégories pour les articles
+
+![image-20200512111722989](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512111722989.png)
+
+![image-20200512111746083](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512111746083.png)
+
+#### Gestion des utilisateurs 
+
+#### Inscription
+
+> Un formulaire d'inscription permet à l'utilisateur de s'inscrire sur le site web, et de renseigner des informations. Le mot de passe est sécurisé en BD par l'intermédiaire de symfony
+
+![image-20200512111927282](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512111927282.png)
+
+> La modification a alors bien lieu en BD
+>
+> ![image-20200512112157302](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512112157302.png)
+
+L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restrictions
+
+![image-20200512112230394](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512112230394.png)
+
+> Il faut se connecter pour avoir accès à son compte utilisateur et ses articles
+
+![image-20200512112304745](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512112304745.png)
+
+![image-20200512112326394](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512112326394.png)
+
+![image-20200512112339708](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200512112339708.png)
+
+> Notre utilisateur n'a pas d'articles, il peut en ajouter
+>
+> Seul le compte admin avec le ROLE_ADMIN à accès à tous les articles, sinon un utilisateur lambda peut seulement modifier et supprimer ses propres articles. 
+

@@ -25,9 +25,9 @@ class AdminArticlesController extends AbstractController
     }
     /**
      * @Route("/admin/article/creation",name="creationArticle")
-     * @Route("/admin/article/{id}", name="modifArticles",methods="GET")
+     * @Route("/admin/article/{id}", name="modifArticles",methods={"GET","POST"})
      */
-    public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry)
+    public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
         if (!$article)
         {
@@ -37,6 +37,7 @@ class AdminArticlesController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid())
         {
+            $article->setAuthor($user);
             $modif = $article->getId() !== null;
             $em = $managerRegistry->getManager();
             $em->persist($article);
