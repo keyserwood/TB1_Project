@@ -47,7 +47,7 @@ class UserArticlesController extends AbstractController
             return $this->redirectToRoute("admin_user_articles",array('id'=>$user->getId()));
         }
         return $this->render('admin/user_articles/modifAjoutUA.html.twig', [
-            'article' => $article,"form" => $form->createView()
+            'article' => $article,"form" => $form->createView(),"modif"=>$modif
         ]);
     }
     /**
