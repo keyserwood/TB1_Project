@@ -19,7 +19,7 @@
                     {% endif %}
                     {% if is_granted('ROLE_USER') %}
                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{path("admin_articles")}}">Mes articles</a>
+                        <a class="dropdown-item" href="{{path("admin_user_articles",{'id':app.user.id})}}">Mes articles</a>
                     {% endif %}
                      </div>
             </li>

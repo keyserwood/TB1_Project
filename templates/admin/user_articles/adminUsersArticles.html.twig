@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes articles{% endblock %}
+
+{% block body %}
+    <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
+        Edition de mes  articles
+    </h1>
+    {%  for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <a href="{{ path("creationArticle") }}" class="btn btn-success m-2">
+        Ajouter
+    </a>
+    <table class="table table-hover m-2 p-2">
+        <tr class="table-active">
+            <td>
+                <strong>
+                    Nom
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Contenu
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Actions
+                </strong>
+            </td>
+        </tr>
+        {% for article in articles %}
+            {% if article.author.id == userId %}
+            <tr>
+                <td>
+                    {{ article.title }}
+                </td>
+                <td>
+                    {{ article.content }}
+                </td>
+                <td>
+                    <a href="{{ path("modifArticles",{'id':article.id}) }}" class="btn btn-primary">
+                        Modifier
+                    </a>
+
+
+
+                    <form method="post" action="{{ path('suppressionArticle',{'id':article.id}) }}" onsubmit="return confirm
+('Confirmer la suppression');">
+                        <input type="hidden" name="_method" value="SUP">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id) }}">
+                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}

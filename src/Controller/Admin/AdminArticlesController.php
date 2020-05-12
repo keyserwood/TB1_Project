@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminArticlesController extends AbstractController
 {
@@ -19,7 +20,7 @@ class AdminArticlesController extends AbstractController
     {
         $articles = $repository->findAll();
         return $this->render('admin/admin_articles/adminArticles.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
         ]);
     }
     /**
