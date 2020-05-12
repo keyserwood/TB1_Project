@@ -77,22 +77,33 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 ![image-20200512112304745](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512112304745.png)
 
-![image-20200512112326394](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512112326394)
+> Panneau d'édition 
 
-![image-20200512112339708](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512112339708)
+![image-20200512124233308](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124233308.png)
 
-> Notre utilisateur n'a pas d'articles, il peut en ajouter
->
+> Notre utilisateur n'a pas d'articles, il peut en ajouter : Exemple
+
+![image-20200512124325870](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124325870.png)
+
+
+
 > Seul le compte admin avec le ROLE_ADMIN à accès à tous les articles, sinon un utilisateur lambda peut seulement modifier et supprimer ses propres articles. 
+>
+> Ici suppression d'un de ses articles par l'utilisateur 
 
-![image-20200512122439649](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512122439649)
+![image-20200512124439466](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124439466.png)
+
+> Après confirmation de la suppression, la modification a lieu en BD
+
+![image-20200512124404239](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124404239.png)
 
 > Il ne peut pas modifier les articles des autres utilisateurs en changeant l'URL !
 
-![image-20200512122532583](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512122532583)
+![image-20200512124536239](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124536239.png)
 
 ## Features à implementer
 
 * Gestion des catégories des articles 
 * Commentaires sur les différents articles
-* Deploy sur le site sur internet
+* Deploy le site sur internet
+
