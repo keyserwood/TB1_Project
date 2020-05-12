@@ -3,25 +3,10 @@
 {% block title %}Edition Articles{% endblock %}
 
 {% block body %}
-    {% if not modif  %}
-        <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
-            Modification
-        </h1>
-        {{ form_start(form) }}
+    {% if app.request.attributes.get('_route') == 'creationArticleUser' %}
 
-        <div class="row m-2">
-            {{ form_row(form.title) }}
-
-        </div>
-        <div class="form-group m-2">
-            {{ form_row(form.content) }}
-        </div>
-        <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
-    {% endif %}
-    {% if modif  %}
-        {% if  article.author.id == app.user.id %}
             <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
-                Modification
+                Ajout
             </h1>
             {{ form_start(form) }}
 
@@ -35,12 +20,33 @@
             <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
 
             {{ form_end(form) }}
-        {% else %}
-            <div>
-                <h1 class="danger"> Attention </h1>
-                Vous ne pouvez pas éditer cet article ! Retournez sur <a href="{{path("admin_user_articles",{'id':app.user.id})}}">Mes articles</a>
-            </div>
+    {% elseif  app.request.attributes.get('_route') == 'modifArticlesUser'%}
+                {% if  article.author.id == app.user.id %}
+                    <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
+                        Modification
+                    </h1>
+                    {{ form_start(form) }}
 
-        {% endif %}
+                    <div class="row m-2">
+                        {{ form_row(form.title) }}
+
+                    </div>
+                    <div class="form-group m-2">
+                        {{ form_row(form.content) }}
+                    </div>
+                    <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
+
+                    {{ form_end(form) }}
+
+                {% else %}
+                      <div>
+                          <h1 class="border border-dark rounded p-2 m-2 text-white bg-danger text-center">
+                              Attention
+                          </h1>
+                        <h2 class="m-2 p-2"> Vous ne pouvez pas éditer cet article ! Retournez sur <a href="{{path("admin_user_articles",{'id':app.user.id})}}">Mes articles</a>
+                        </h2>
+                      </div>
+
+                {% endif %}
     {% endif %}
 {% endblock %}

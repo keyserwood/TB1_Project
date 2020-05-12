@@ -13,7 +13,7 @@
     {% endfor %}
 
     <form method="post" action="{{ path("creationArticleUser",{'id':userId}) }}" >
-        <input type="hidden" name="_token" value="0">
+        <input type="hidden" name="_token" value=0 >
         <input type="submit" class="btn btn-success m-2" value="Ajouter">
     </form>
 
@@ -45,12 +45,9 @@
                     {{ article.content }}
                 </td>
                 <td>
-                    <a href="{{ path("modifArticlesUser",{'id':article.id}) }}" class="btn btn-primary">
-                        Modifier
-                    </a>
                     <form method="post" action="{{ path("modifArticlesUser",{'id':article.id}) }}" >
-                        <input type="hidden" name="_token" value="1">
-                        <input type="submit" class="btn btn-success m-2" value="Ajouter">
+                        <input type="hidden" name="_token" value=1 >
+                        <input type="submit" class="btn btn-primary" value="Modifier">
                     </form>
 
 

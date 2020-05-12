@@ -30,26 +30,27 @@ class UserArticlesController extends AbstractController
      */
     public function modifArticle(Articles $article = null,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
-        $modif = false;
-        if (!$article)
-        {
-            $article = new Articles();
-        }
-        $form = $this->createForm(ArticlesType::class,$article);
-        $form->handleRequest($request);
-        if($form->isSubmitted()&&$form->isValid())
-        {
-            $article->setAuthor($user);
-            $em = $managerRegistry->getManager();
+
+            if (!$article)
+            {
+                $article = new Articles();
+            }
+            $form = $this->createForm(ArticlesType::class,$article);
+            $form->handleRequest($request);
             $modif = $article->getId() !== null;
-            $em->persist($article);
-            $em->flush();
-            $this->addFlash("success", ($modif)? "La modification a été effectuée" : "L'ajout a été effectué");
-            return $this->redirectToRoute("admin_user_articles",array('id'=>$user->getId()));
-        }
-        return $this->render('admin/user_articles/modifAjoutUA.html.twig', [
-            'article' => $article,"form" => $form->createView(),"modif"=>$modif
-        ]);
+            if($form->isSubmitted()&&$form->isValid())
+            {
+                $article->setAuthor($user);
+                $modif = $article->getId() !== null;
+                $em = $managerRegistry->getManager();
+                $em->persist($article);
+                $em->flush();
+                $this->addFlash("success", ($modif)? "La modification a été effectuée" : "L'ajout a été effectué");
+                return $this->redirectToRoute("admin_user_articles",array('id'=>$user->getId()));
+            }
+            return $this->render('admin/user_articles/modifAjoutUA.html.twig', [
+                'article' => $article,"form" => $form->createView(),"modif"=>$modif
+            ]);
     }
     /**
      * @Route("/user/article/{id}", name="suppressionArticleUser",methods="SUP")
