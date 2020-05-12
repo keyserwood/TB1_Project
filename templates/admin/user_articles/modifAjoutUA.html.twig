@@ -37,7 +37,8 @@
             {{ form_end(form) }}
         {% else %}
             <div>
-                Vous ne pouvez pas éditer cet article ! Retournez sur <a href="{{ path() }}"
+                <h1 class="danger"> Attention </h1>
+                Vous ne pouvez pas éditer cet article ! Retournez sur <a href="{{path("admin_user_articles",{'id':app.user.id})}}">Mes articles</a>
             </div>
 
         {% endif %}

@@ -36,6 +36,7 @@ class UserArticlesController extends AbstractController
         }
         $form = $this->createForm(ArticlesType::class,$article);
         $form->handleRequest($request);
+        $modif = $article->getId() !== null;
         if($form->isSubmitted()&&$form->isValid())
         {
             $article->setAuthor($user);
