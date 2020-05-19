@@ -2,14 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Users;
 use App\Form\UsersManagerType;
 use App\Repository\UsersRepository;
-use Symfony\Bridge\Doctrine\ManagerRegistry;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\User;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminUsersController extends AbstractController
 {
@@ -26,11 +25,11 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/admin/users/{id}", name="modifUsers",methods={"GET","POST"})
      */
-    public function modifUsers(User $user,Request $request,ManagerRegistry $managerRegistry)
+    public function modifUsers(Users $user,Request $request,ManagerRegistry $managerRegistry)
     {
 
         $form  = $this->createForm(UsersManagerType::class,$user);
-        $form->handleRequest($user);
+        $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $managerRegistry->getManager();
@@ -46,7 +45,7 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/admin/users/{id}", name="suppressionUser",methods="SUP")
      */
-    public function suppUser(User $user, Request $request, ManagerRegistry $managerRegistry)
+    public function suppUser(Users $user, Request $request, ManagerRegistry $managerRegistry)
     {
         if($this->isCsrfTokenValid("SUP".$user->getId(),$request->get('_token')))
         {
