@@ -15,12 +15,40 @@
         <h3 >
             Section des commentaires
         </h3>
-        <a href="" class="btn btn-success">
+        <a href="{{ path('creationComment',{'id':article.id}) }}" class="btn btn-success">
             AJOUTER
         </a>
-        <p>
+        <table class="table table-hover m-2 p-2">
+            <tr class="table-active">
+                <td>
+                    <strong>
+                        Auteur
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        Contenu
+                    </strong>
+                </td>
+            </tr>
+        {% for comment in commentaires %}
+            {% if article.id == comment.articles.id %}
+                <tr>
 
-        </p>
+                <td>
+                    {{comment.author.username}}
+                </td>
+                <td>
+                    {{comment.content}}
+                </td>
+                </tr>
+
+            {% endif     %}
+
+        {% endfor %}
+        </table>
+
     </div>
+
 
 {% endblock %}

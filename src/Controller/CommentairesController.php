@@ -12,12 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 class CommentairesController extends AbstractController
 {
-
     /**
-     * @Route("/articles/{id}/addComment", name="creationComment")
-     * @Route("/articles/{id}/editComment, name="modifComment")
+     * @Route("/articles/{id}/commentaires/creation",name="creationComment")
+     * @Route("/articles/article/{id}/commentaires", name="modifComment",methods={"GET","POST"})
      */
-    public function modifCommentaires(Commentaires $commentaires =null,Articles $articles, $request,ManagerRegistry $managerRegistry,UserInterface $user)
+    public function modifCommentaires(Commentaires $commentaires =null,Articles $articles,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
         if($commentaires==null)
         {
@@ -37,7 +36,7 @@ class CommentairesController extends AbstractController
             return $this->redirectToRoute("afficherArticle",array('id'=>$articles->getId()));
 
         }
-        return $this->render('admin/user_articles/modifAjoutUA.html.twig', [
+        return $this->render('commentaires/modifAjout.html.twig', [
             'commentaires' => $commentaires,"form" => $form->createView(),"modif"=>$modif
         ]);
     }
