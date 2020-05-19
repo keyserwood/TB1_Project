@@ -30,18 +30,38 @@
                         Contenu
                     </strong>
                 </td>
+                <td>
+                    <strong>
+                        Actions
+                    </strong>
+                </td>
             </tr>
         {% for comment in commentaires %}
             {% if article.id == comment.articles.id %}
                 <tr>
 
                 <td>
-                    {{comment.author.username}}
+                    @{{comment.author.username}}
                 </td>
                 <td>
                     {{comment.content}}
                 </td>
+                <td>
+                    {% if app.user.id == comment.author.id %}
+                        <a href="{{ path("modifComment",{'id':article.id}) }}" class="btn btn-primary">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <form method="post" action="{{ path('suppressionComment',{'id':comment.id}) }}" onsubmit="return confirm
+('Confirmer la suppression');">
+                            <input type="hidden" name="_method" value="SUP">
+                            <input type="hidden" name="_token" value="{{ csrf_token('SUP'~comment.id) }}">
+                            <input type="submit" class="btn btn-danger material-icons" value="delete">
+                        </form>
+                    {% endif %}
+
+                </td>
                 </tr>
+
 
             {% endif     %}
 
