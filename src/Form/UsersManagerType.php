@@ -15,16 +15,7 @@ class UsersManagerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('roles', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'label' => false,
-                    'choices' => [
-                        'Admin' => 'ROLE_ADMIN',
-                        'User' => 'ROLE_USER',
-                    ],
-                ],
-            ]);
+            ->add('verifRoles');
     }
 
     public function configureOptions(OptionsResolver $resolver)

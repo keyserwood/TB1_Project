@@ -56,6 +56,10 @@ class Users implements UserInterface
      */
     private $email;
 
+
+    private $verifRoles;
+    // Enable to change role without too much trouble
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -100,7 +104,17 @@ class Users implements UserInterface
 
         return $this;
     }
+    public function getVerifRoles(): ?string
+    {
+        return $this->verifRoles;
+    }
 
+    public function setVerifRoles(?string $verifRoles): self
+    {
+        $this->verifRoles = $verifRoles;
+
+        return $this;
+    }
     public function getRoles()
     {
         return [$this->roles];
