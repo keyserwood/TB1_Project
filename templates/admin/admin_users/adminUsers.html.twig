@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Articles{% endblock %}
+
+{% block body %}
+    <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
+        Editer les articles
+    </h1>
+    {%  for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{#    <a href="{{ path("creationUser") }}" class="btn btn-success m-2">#}
+{#        Ajouter#}
+{#    </a>#}
+    <table class="table table-hover m-2 p-2">
+        <tr class="table-active">
+            <td>
+                <strong>
+                    Username
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Email
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Role
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    Actions
+                </strong>
+            </td>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+                <td>
+                    {{ user.roles | join('|') }}
+                </td>
+                <td>
+{#                    <a href="{{ path("modifUser",{'id':user.id}) }}" class="btn btn-primary">#}
+{#                        Modifier#}
+{#                    </a>#}
+
+
+
+{#                    <form method="post" action="{{ path('suppressionUser',{'id':user.id}) }}" onsubmit="return confirm#}
+{#('Confirmer la suppression');">#}
+                        <input type="hidden" name="_method" value="SUP">
+                        <input type="hidden" name="_token" value="{{ csrf_token('SUP'~user.id) }}">
+                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                    </form>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}
