@@ -12,7 +12,7 @@
         </div>
     {% endfor %}
     <a href="{{ path("creationArticle") }}" class="btn btn-success m-2">
-        Ajouter
+        AJOUTER
     </a>
     <table class="table table-hover m-2 p-2">
         <tr class="table-active">
@@ -42,7 +42,7 @@
                 </td>
                 <td>
                         <a href="{{ path("modifArticles",{'id':article.id}) }}" class="btn btn-primary">
-                            Modifier
+                            <i class="material-icons">edit</i>
                         </a>
 
 
@@ -51,7 +51,7 @@
 ('Confirmer la suppression');">
                     <input type="hidden" name="_method" value="SUP">
                     <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id) }}">
-                    <input type="submit" class="btn btn-danger" value="Supprimer">
+                        <input type="submit" class="btn btn-danger material-icons" value="delete">
                     </form>
                 </td>
             </tr>

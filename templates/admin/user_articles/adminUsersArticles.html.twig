@@ -14,7 +14,7 @@
 
     <form method="post" action="{{ path("creationArticleUser",{'id':userId}) }}" >
         <input type="hidden" name="_token" value=0 >
-        <input type="submit" class="btn btn-success m-2" value="Ajouter">
+        <input type="submit" class="btn btn-success m-2 "  value="AJOUTER">
     </form>
 
     <table class="table table-hover m-2 p-2">
@@ -47,7 +47,7 @@
                 <td>
                     <form method="post" action="{{ path("modifArticlesUser",{'id':article.id}) }}" >
                         <input type="hidden" name="_token" value=1 >
-                        <input type="submit" class="btn btn-primary" value="Modifier">
+                        <input type="submit" class="btn btn-primary material-icons" value="edit">
                     </form>
 
 
@@ -56,7 +56,7 @@
 ('Confirmer la suppression');">
                         <input type="hidden" name="_method" value="SUP">
                         <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id~app.user.id) }}">
-                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                        <input type="submit" class="btn btn-danger material-icons" value="delete">
                     </form>
                 </td>
             </tr>

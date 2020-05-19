@@ -10,6 +10,7 @@ Voici les articles du blog
     {% for article in articles %}
         <div class="m-2">
             <h2><a href="{{ path('afficherArticle',{'id':article.id}) }}">{{ article.title }}</a></h2>
+            <h3>[{{ article.author.username }}]</h3>
 
             <p>{{ article.content }}</p>
 

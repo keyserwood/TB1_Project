@@ -22,17 +22,17 @@
                         <a class="dropdown-item" href="{{path("admin_user_articles",{'id':app.user.id})}}">Mes articles</a>
                     {% endif %}
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Utilisateurs
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a class="dropdown-item" href="{{ path("admin_users") }}">Modifier</a>
-                    {% endif %}
-                </div>
-            </li>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Utilisateurs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ path("admin_users") }}">Modifier</a>
+                    </div>
+                </li>
+                {% endif %}
             {% endif %}
             {% if not app.user %}
             <li class="nav-item">

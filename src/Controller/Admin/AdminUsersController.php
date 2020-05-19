@@ -32,7 +32,7 @@ class AdminUsersController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $role = $form['email']->getData();
+            $role = $form['verifRoles']->getData();
             $user->setRoles($role);
             $em = $managerRegistry->getManager();
             $em->persist($user);

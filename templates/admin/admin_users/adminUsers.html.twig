@@ -55,7 +55,7 @@
                 </td>
                 <td>
                     <a href="{{ path("modifUsers",{'id':user.id}) }}" class="btn btn-primary">
-                        Modifier
+                        <i class="material-icons">edit</i>
                     </a>
 
 
@@ -64,7 +64,7 @@
 ('Confirmer la suppression');">
                         <input type="hidden" name="_method" value="SUP">
                         <input type="hidden" name="_token" value="{{ csrf_token('SUP'~user.id) }}">
-                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                        <input type="submit" class="btn btn-danger material-icons" value="delete">
                     </form>
                 </td>
             </tr>
