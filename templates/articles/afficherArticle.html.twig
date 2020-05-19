@@ -6,10 +6,21 @@
     <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">
         Voici l'article : {{ article.title }}
     </h1>
-    <h2>L'auteur de cet article est : {{ article.author.username }}</h2>
 
-        <div class="m-2">
-            <p>{{ article.Content }}</p>
+        <div class="m-2 p-2">
+            <h2>@{{ article.author.username }}</h2>
+            <p class="m-2 p-2">{{ article.Content }}</p>
         </div>
+    <div class ="m-2 p-2">
+        <h3 >
+            Section des commentaires
+        </h3>
+        <a href="" class="btn btn-success">
+            AJOUTER
+        </a>
+        <p>
+
+        </p>
+    </div>
 
 {% endblock %}

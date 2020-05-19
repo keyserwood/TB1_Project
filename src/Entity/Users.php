@@ -58,11 +58,17 @@ class Users implements UserInterface
 
 
     private $verifRoles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="author")
+     */
+    private $commentaires;
     // Enable to change role without too much trouble
 
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,5 +180,36 @@ class Users implements UserInterface
     }
     public function getSalt()
     {
+    }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaires $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaires $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getAuthor() === $this) {
+                $commentaire->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }
