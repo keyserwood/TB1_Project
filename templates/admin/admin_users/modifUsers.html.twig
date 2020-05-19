@@ -7,13 +7,9 @@
         Modification Users
     </h1>
     {{ form_start(form) }}
-
-    <div class="row m-2">
-        {{ form_row(form.roles) | join('|') }}
-
+    <div class="m-2 p-2">
+        {{ form_widget(form) }}
     </div>
-
-    <input type="submit" class="m-2 btn btn-primary" value="Enregistrer">
-
+    <input type="submit" class="m-2 p-2 btn btn-primary" value="Enregistrer">
     {{ form_end(form) }}
 {% endblock %}

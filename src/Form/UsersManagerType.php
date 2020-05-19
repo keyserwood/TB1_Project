@@ -7,20 +7,24 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UsersManagerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(
-                'roles', 'choice', [
-                'choices' => ['ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => 'ROLE_USER'],
-                'expanded' => true,
-                'multiple' => true,
-            ]
-            )
-        ;
+            ->add('roles', CollectionType::class, [
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => [
+                    'label' => false,
+                    'choices' => [
+                        'Admin' => 'ROLE_ADMIN',
+                        'User' => 'ROLE_USER',
+                    ],
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
