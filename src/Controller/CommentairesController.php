@@ -42,6 +42,16 @@ class CommentairesController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/commentaires", name="admin_comment")
+     */
+    public function index(CommentairesRepository $repository)
+    {
+        $commentaires =$repository->findAll();
+        return $this->render('admin/admin_commentaires/adminComment.html.twig', [
+            'commentaires' => $commentaires,
+        ]);
+    }
+    /**
      * @Route("/articles/article/{id}/commentaires", name="suppressionComment",methods="SUP")
      */
     public function suppComment(Commentaires $commentaires, Request $request, ManagerRegistry $managerRegistry, Articles $articles)
@@ -56,16 +66,7 @@ class CommentairesController extends AbstractController
 
         }
     }
-    /**
-     * @Route("/admin/commentaires", name="admin_comment")
-     */
-    public function index(CommentairesRepository $repository)
-    {
-        $commentaires =$repository->findAll();
-        return $this->render('admin/admin_commentaires/adminComment.html.twig', [
-            'commentaires' => $commentaires,
-            ]);
-    }
+
 
 
 }

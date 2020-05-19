@@ -101,6 +101,28 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 ![image-20200512124536239](https://github.com/keyserwood/TB1_Project/blob/master/image-20200512124536239.png)
 
+### Gestion des utilisateurs 
+
+> Il faut maintenant pouvoir modifier les roles des utilisateurs sans passer par la BD, et cela doit être possible pour un utilisateur ROLE_ADMIN
+
+![image-20200519171136809](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200519171136809.png)
+
+> Panneau admin de gestion des utilisateurs avec les différentes rôles : Un admin peut modifier les privilèges ou supprimer un utilisateur. Passage au material icons pour les actions. On remarque que un admin ne peut pas ajouter d'utilisateur, c'est un choix délibéré. 
+
+![image-20200519171238903](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200519171238903.png)
+
+> Formulaire de modification des privilèges. Ce dernier a posé beaucoup de difficultés à mettre en place avec des problèmes de conversion array->string pour roles, j'ai utilisé un attribut verif roles (pas en BD) pour trick & ensuite setRoles(verifRoles);
+
+### Gestion des commentaires
+
+
+
+
+
+
+
+
+
 ## Features à implementer
 
 * Gestion des catégories des articles 
