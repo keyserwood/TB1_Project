@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Articles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,7 +19,10 @@ class ArticlesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Articles::class);
     }
-
+    public function findAllWithPagination(): Query{
+        return $this->createQueryBuilder('v')
+            ->getQuery();
+    }
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */

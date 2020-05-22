@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Repository\ArticlesRepository;
 use App\Repository\CommentairesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
@@ -20,9 +22,13 @@ class ArticlesController extends AbstractController
     /**
      * @Route("/articles", name="articles")
      */
-    public function articles(ArticlesRepository $repository)
+    public function articles(ArticlesRepository $repository, PaginatorInterface $paginator, Request $request)
     {
-        $articles = $repository->findAll();
+        $articles = $paginator->paginate(
+            $repository->findAllWithPagination(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            4 /*limit per page*/
+        );
         return $this->render('articles/articles.html.twig', [
             'articles' => $articles,
         ]);

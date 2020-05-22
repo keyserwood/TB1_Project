@@ -18,4 +18,9 @@ Voici les articles du blog
         </div>
 
     {% endfor %}
+    <div class="navigation m-2 p-2">
+        {{ knp_pagination_render(articles) }}
+    </div>
 {% endblock %}
+{# display navigation #}
+
