@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
+ * @Vich\Uploadable
  */
 class Articles
 {
@@ -52,6 +53,10 @@ class Articles
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $featured_image;
+    /**
+     * @Vich\UploadableField(mapping="images_articles",fileNameProperty="featured_image")
+    */
+    private $imageFile;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="articles")
