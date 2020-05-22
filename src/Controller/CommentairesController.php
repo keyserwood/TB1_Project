@@ -7,6 +7,7 @@ use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +15,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class CommentairesController extends AbstractController
 {
     /**
+     * @Route("/admin/commentaires", name="admin_comment")
+     */
+    public function index(CommentairesRepository $repository)
+    {
+        $commentaires =$repository->findAll();
+        return $this->render('admin/admin_commentaires/adminComment.html.twig', [
+            'commentaires' => $commentaires,
+        ]);
+    }
+    /**
      * @Route("/articles/{id}/commentaires/creation",name="creationComment")
-     * @Route("/articles/article/{id}/commentaires", name="modifComment",methods={"GET","POST"})
+     * @Route("/articles/article/commentaires/{id}", name="modifComment",methods={"GET","POST"})
      */
     public function modifCommentaires(Commentaires $commentaires =null,Articles $articles,Request $request,ManagerRegistry $managerRegistry,UserInterface $user)
     {
@@ -41,20 +52,11 @@ class CommentairesController extends AbstractController
             'commentaires' => $commentaires,"form" => $form->createView(),"modif"=>$modif
         ]);
     }
+
     /**
-     * @Route("/admin/commentaires", name="admin_comment")
+     * @Route("/articles/article/commentaires/{id}", name="suppressionComment",methods="SUP")
      */
-    public function index(CommentairesRepository $repository)
-    {
-        $commentaires =$repository->findAll();
-        return $this->render('admin/admin_commentaires/adminComment.html.twig', [
-            'commentaires' => $commentaires,
-        ]);
-    }
-    /**
-     * @Route("/articles/article/{id}/commentaires", name="suppressionComment",methods="SUP")
-     */
-    public function suppComment(Commentaires $commentaires, Request $request, ManagerRegistry $managerRegistry, Articles $articles)
+    public function suppComment(Commentaires $commentaires, Request $request, ManagerRegistry $managerRegistry,Articles $articles)
     {
         if($this->isCsrfTokenValid("SUP".$commentaires->getId(),$request->get('_token')))
         {
@@ -63,6 +65,21 @@ class CommentairesController extends AbstractController
             $em->flush();
             $this->addFlash("success","La suppression a été effectuée");
             return $this->redirectToRoute("afficherArticle",array('id'=>$articles->getId()));
+
+        }
+    }
+    /**
+     * @Route("/admin/articles/article/commentaires/{id}", name="suppressionAdminComment",methods="SUP")
+     */
+    public function suppAdminComment(Commentaires $commentaires, Request $request, ManagerRegistry $managerRegistry)
+    {
+        if($this->isCsrfTokenValid("SUP".$commentaires->getId(),$request->get('_token')))
+        {
+            $em = $managerRegistry->getManager();
+            $em->remove($commentaires);
+            $em->flush();
+            $this->addFlash("success","La suppression a été effectuée");
+            return $this->redirectToRoute("admin_comment");
 
         }
     }

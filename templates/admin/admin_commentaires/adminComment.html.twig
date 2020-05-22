@@ -46,7 +46,7 @@
                     {{ comment.articles.title }}
                 </td>
                 <td>
-                    <form method="post" action="{{ path('suppressionComment',{'id':comment.id}) }}" onsubmit="return confirm
+                    <form method="post" action="{{ path('suppressionAdminComment',{'id':comment.id}) }}" onsubmit="return confirm
 ('Confirmer la suppression');">
                         <input type="hidden" name="_method" value="SUP">
                         <input type="hidden" name="_token" value="{{ csrf_token('SUP'~comment.id) }}">
