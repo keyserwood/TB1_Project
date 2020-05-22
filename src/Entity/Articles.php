@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticlesRepository")
@@ -57,6 +59,23 @@ class Articles
      * @Vich\UploadableField(mapping="images_articles",fileNameProperty="featured_image")
     */
     private $imageFile;
+
+    public function setImageFile(?File $imageFile = null) : self
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+
+//        if (null !== $imageFile) {
+//            // It is required that at least one field changes if you are using doctrine
+//            // otherwise the event listeners won't be called and the file is lost
+//            $this->updatedAt = new \DateTimeImmutable();
+//        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaires", mappedBy="articles")
