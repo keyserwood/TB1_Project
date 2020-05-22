@@ -41,6 +41,10 @@ class CommentairesController extends AbstractController
         {
             $commentaires->setAuthor($user);
             $commentaires->setArticles($articles);
+            if(!$modif)
+            {
+                $commentaires->setCreatedAt(new \DateTime('now'));
+            }
             $em = $managerRegistry->getManager();
             $em->persist($commentaires);
             $em->flush();

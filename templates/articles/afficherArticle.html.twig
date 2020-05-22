@@ -38,6 +38,11 @@
                 </td>
                 <td>
                     <strong>
+                        Crée le :
+                    </strong>
+                </td>
+                <td>
+                    <strong>
                         Actions
                     </strong>
                 </td>
@@ -52,6 +57,11 @@
                 <td>
                     {{comment.content}}
                 </td>
+                <td>
+                    {{comment.createdat | format_datetime('short', 'short', locale='fr')}}
+                </td>
+
+
                 <td>
                     {% if app.user.id == comment.author.id %}
                         <a href="{{ path("modifComment",{'id':comment.id}) }}" class="btn btn-primary">
