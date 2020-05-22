@@ -11,8 +11,8 @@
             <h2>@{{ article.author.username }}</h2>
             <p class="m-2 p-2">{{ article.Content }}</p>
             {% if article.featuredimage is not null %}
-                <img src="{{asset('images/articles/'~article.featuredimage) }}" class="img">
-                <p class="b">Voici l'image de mon article</p>
+                <img src="{{asset('images/articles/'~article.featuredimage) }}" width="150px" height="140px">
+                <p class="m-2 p-2"><i>Voici l'image de mon article</i></p>
             {% endif %}
         </div>
          <div class ="m-2 p-2">

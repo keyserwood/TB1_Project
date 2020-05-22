@@ -35,7 +35,7 @@
         {% for article in articles %}
             <tr>
                 <td>
-                    {{ article.title }}
+                    <a href="{{ path("afficherArticle",{'id':article.id}) }}">{{ article.title }}</a>
                 </td>
                 <td>
                     {{ article.content }}
