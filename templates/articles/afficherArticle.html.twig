@@ -10,8 +10,11 @@
         <div class="m-2 p-2">
             <h2>@{{ article.author.username }}</h2>
             <p class="m-2 p-2">{{ article.Content }}</p>
+            {% if article.featured_image is not null %}
+            <p class="m-2 p-2">Voici l'image de mon article :<img src ="{{ asset('images/'~article.feature_image) }}" class="perso_img"></p>
+            {% endfor %}
         </div>
-    <div class ="m-2 p-2">
+         <div class ="m-2 p-2">
         <h3 >
             Section des commentaires
         </h3>
