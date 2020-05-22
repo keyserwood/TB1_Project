@@ -39,6 +39,14 @@ class AdminArticlesController extends AbstractController
         {
             $article->setAuthor($user);
             $modif = $article->getId() !== null;
+            if($modif)
+            {
+                $article->setUpdatedAt(new \DateTime("now"));
+            }
+            else
+            {
+                $article->setCreatedAt(new \DateTime("now"));
+            }
             $em = $managerRegistry->getManager();
             $em->persist($article);
             $em->flush();
