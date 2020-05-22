@@ -10,9 +10,10 @@
         <div class="m-2 p-2">
             <h2>@{{ article.author.username }}</h2>
             <p class="m-2 p-2">{{ article.Content }}</p>
-            {% if article.featured_image is not null %}
-            <p class="m-2 p-2">Voici l'image de mon article :<img src ="{{ asset('images/'~article.feature_image) }}" class="perso_img"></p>
-            {% endfor %}
+            {% if article.featuredimage is not null %}
+                <img src="{{asset('images/articles/'~article.featuredimage) }}" class="img">
+                <p class="b">Voici l'image de mon article</p>
+            {% endif %}
         </div>
          <div class ="m-2 p-2">
         <h3 >
