@@ -151,7 +151,7 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 > Pour mettre en place la pagination j'ai utilisé le paginator bundle. 
 
-![image-20200523105141843](https://github.com/keyserwood/TB1_Project/blob/master/image-20200523105141843.png)
+![image-20200523105743154](https://github.com/keyserwood/TB1_Project/blob/master/image-20200523105743154.png)
 
 > On a accès ici à 4 articles par pages, et on peut naviguer entre les différents articles. 
 
