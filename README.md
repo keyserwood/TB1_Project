@@ -139,11 +139,11 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 ### Ajout d'images sur les articles 
 
-![image-20200523105011939](C:\wamp64\www\TB1_Project\image-20200523105011939.png)
+![image-20200523105011939](https://github.com/keyserwood/TB1_Project/blob/master/image-20200523105011939.png)
 
 > On peut désormais ajouter des images sur les articles, pour cela j'ai utilisé Vich/UploaderBundle
 
-![image-20200523104641334](C:\wamp64\www\TB1_Project\image-20200523104641334.png)
+![image-20200523104641334](https://github.com/keyserwood/TB1_Project/blob/master/image-20200523104641334.png)
 
 > On observe que la gestion des dates pour les articles est présente, avec created_at : la création de l'article, et updated_at : Dernière mise à jour 
 
@@ -151,7 +151,7 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 > Pour mettre en place la pagination j'ai utilisé le paginator bundle. 
 
-![image-20200523105141843](C:\Users\Elouan\AppData\Roaming\Typora\typora-user-images\image-20200523105141843.png)
+![image-20200523105141843](https://github.com/keyserwood/TB1_Project/blob/master/image-20200523105141843.png)
 
 > On a accès ici à 4 articles par pages, et on peut naviguer entre les différents articles. 
 
