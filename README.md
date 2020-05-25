@@ -155,9 +155,9 @@ L'attribution des rôles est par défaut le ROLE_USER ce qui entraîne des restr
 
 > On a accès ici à 4 articles par pages, et on peut naviguer entre les différents articles. 
 
-## Features à implementer
+## Features additionnelles à implementer
 
-* Gestion des catégories des articles
+* Gestion des catégories des articles (si temps)
 
-* Deploy le site sur internet
+* Deploy le site sur internet 
 
