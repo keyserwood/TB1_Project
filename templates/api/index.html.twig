@@ -9,10 +9,21 @@
     <h1 class="border border-dark rounded p-2 m-2 text-white bg-danger text-center">
         Attention l'API est à manipuler avec précaution ! C'est une fonctionnalité Bêta 😃
     </h1>
-
+    <a href="{{ path("api_add")}}" class="btn btn-success m-2 p-2">
+        Ajouter</a>
     {% for article in articles %}
         <div class="m-2">
-            <h2><a href="{{ path('afficherArticle',{'id':article.id}) }}">{{ article.title }}</a></h2>
+            <div>
+                <h2><a href="{{ path('afficherArticle',{'id':article.id}) }}">{{ article.title }}</a></h2>
+                <a href="{{ path("api_article",{'id':article.id}) }}" class="btn btn-info">
+                    Afficher</a>
+                <a href="{{ path("api_edit",{'id':article.id}) }}" class="btn btn-primary">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a href="{{ path("api_delete",{'id':article.id}) }}" class="btn btn-danger">
+                    <i class="material-icons">delete</i></a>
+
+            </div>
             <h3>[{{ article.author.username }}]</h3>
 
             <p>{{ article.content }}</p>

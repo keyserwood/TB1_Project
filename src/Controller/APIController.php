@@ -94,7 +94,7 @@ class APIController extends AbstractController
         return new Response('Failed', 404);
     }
     /**
-     * @Route("/api/article/editer/{id}", name="api_edit", methods={"PUT"})
+     * @Route("/api/article/editer/{id}", name="api_edit", methods={"GET"})
      */
     public function editArticle(?Articles $article, Request $request)
     {
