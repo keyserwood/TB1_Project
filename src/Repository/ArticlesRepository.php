@@ -28,7 +28,7 @@ class ArticlesRepository extends ServiceEntityRepository
      */
     public function apiFindAll() : array {
         $qb = $this->createQueryBuilder('a')
-            ->select('a.id','a.title','a.content','a.featuredimage','a.created_at')
+            ->select('a.id','a.title','a.content','a.featured_image','a.created_at')
             ->orderBy('a.created_at','DESC');
         $query = $qb->getQuery();
         return $query->execute();

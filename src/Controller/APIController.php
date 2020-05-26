@@ -31,7 +31,7 @@ class APIController extends AbstractController
         // Convertir en JSON
         $jsonContent = $serializer->serialize($articles,'json',['circular_reference_handler'=>function($object){return $object->getId();}]);
         // Instanciation de la réponse
-        $response = new Responses($jsonContent);
+        $response = new Response($jsonContent);
         // On ajoute l'entête HTTP
         $response->headers->set('Content-Type','application/json');
         // On envoie la réponse
@@ -52,7 +52,7 @@ class APIController extends AbstractController
 
     }
     /**
-     * @Route("article/ajout",name="api_add",methods={"POST"}
+     * @Route("article/ajout",name="api_add",methods={"POST"})
      */
     public function addArticle(Request $request)
     {
@@ -75,7 +75,8 @@ class APIController extends AbstractController
                 $entityManager->flush();
                  // On retourne la confirmation
                 return new Response('ok', 201);
-        } return new Response('Failed', 404);
+        }
+        return new Response('Failed', 404);
     }
     /**
      * @Route("/api/article/editer/{id}", name="api_edit", methods={"PUT"})
@@ -110,7 +111,7 @@ class APIController extends AbstractController
         } return new Response('Failed', 404);
     }
     /**
-     * @Route("/api/article/delete/{id}", name="supprime", methods={"DELETE"})
+     * @Route("/api/article/delete/{id}", name="api_delete", methods={"DELETE"})
      */
     public function removeArticle(Articles $article)
     {

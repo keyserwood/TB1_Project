@@ -55,8 +55,18 @@
                 <a class="nav-link" href="{{path("logout")}}">Deconnexion</a>
             </li>
             {% endif %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('api') }}">API</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    API
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path("api") }}">Articles</a>
+{#                    <a class="dropdown-item" href="{{ path("api_article") }}">Un article</a>#}
+{#                    <a class="dropdown-item" href="{{ path("api_add") }}">Ajout</a>#}
+{#                    <a class="dropdown-item" href="{{ path("api_edit") }}">Modification</a>#}
+{#                    <a class="dropdown-item" href="{{ path("api_delete") }}">Suppression</a>#}
+
+                </div>
             </li>
         </ul>
     </div>
