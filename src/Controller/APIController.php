@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Users;
 use App\Repository\ArticlesRepository;
+use App\Repository\UsersRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,13 +65,19 @@ class APIController extends AbstractController
         $jsonContent = $serializer->serialize($articles,'json',['circular_reference_handler'=>function($object){return $object->getId();}]);
         $response =new Response($jsonContent);
         $response->headers->set('Content-Type','application/json');
+        $this->showArticle($articles);
         return $response;
 
     }
+    public function showArticle(Articles $articles)
+    {
+        return $this->redirectToRoute("afficherArticle",array('id'=>$articles->getId()));
+
+    }
     /**
-     * @Route("article/ajout",name="api_add",methods={"POST"})
+     * @Route("article/ajout",name="api_add",methods={"GET"})
      */
-    public function addArticle(Request $request)
+    public function addArticle(Request $request,UsersRepository $usersRepository)
     {
         // On vérifie si la requête est une requête Ajax
         if($request->isXmlHttpRequest()) {
@@ -81,9 +88,9 @@ class APIController extends AbstractController
                 // On hydrate l'objet
                 $article->setTitle($donnees->title);
                 $article->setContent($donnees->content);
-                $article->setFeaturedImage($donnees->image);
-                $user = $this->getDoctrine()->getRepository(Users::class)->findOneBy(["id"
-                => 1]);
+               // $article->setFeaturedImage($donnees->image);
+                $user = $usersRepository->findOneBy(["id"
+                => 4]);
                 $article->setAuthor($user);
                  // On sauvegarde en base
                 $entityManager = $this->getDoctrine()->getManager();

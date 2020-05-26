@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    {% set articles = twig_json_decode(response) %}
+    {% for article in articles %}
+        {{ article }}
+    {% endfor %}
+{#    <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary text-center">#}
+{#        Voici l'article : {{ article.title }}#}
+{#    </h1>#}
+{#        <div class="m-2 p-2">#}
+{#            <strong>Le : </strong>{{ article.createdat|format_datetime('short', 'short', locale='fr')  }} | <strong> Dernière modification</strong> : {{ article.updatedat|format_datetime('short', 'short', locale='fr')  }}#}
+{#        </div>#}
+{#        <div class="m-2 p-2">#}
+{#            <h2>@{{ article.author.username }}</h2>#}
+{#            <p class="m-2 p-2">{{ article.Content }}</p>#}
+{#            {% if article.featuredimage is not null %}#}
+{#                <img src="{{asset('images/articles/'~article.featuredimage) }}" width="150px" height="140px">#}
+{#                <p class="m-2 p-2"><i>Voici l'image de mon article</i></p>#}
+{#            {% endif %}#}
+{#        </div>#}
+
+{% endblock  %}
