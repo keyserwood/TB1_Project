@@ -23,6 +23,18 @@ class ArticlesRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('v')
             ->getQuery();
     }
+    /**
+     * @return Articles[]
+     */
+    public function apiFindAll() : array {
+        $qb = $this->createQueryBuilder('a')
+            ->select('a.id','a.title','a.content','a.featuredimage','a.created_at')
+            ->orderBy('a.created_at','DESC');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
+
     // /**
     //  * @return Articles[] Returns an array of Articles objects
     //  */
