@@ -29,5 +29,11 @@ class APIController extends AbstractController
         return $this->render('api/index.html.twig', [
             'controller_name' => 'APIController',
         ]);
+        // Instanciation de la réponse
+        $response = new Responses($jsonContent);
+        // On ajoute l'entête HTTP
+        $response->headers->set('Content-Type','application/json');
+        // On envoie la réponse
+        return $response;
     }
 }
