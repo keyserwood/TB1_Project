@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Users;
 use App\Repository\ArticlesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,20 @@ use Symfony\Component\Serializer\Serializer;
 
 class APIController extends AbstractController
 {
+    /**
+     * @Route("/api/articles/display", name="api_display")
+     */
+    public function apiArticles(ArticlesRepository $repository, PaginatorInterface $paginator, Request $request)
+    {
+        $articles = $paginator->paginate(
+            $repository->findAllWithPagination(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            4 /*limit per page*/
+        );
+        return $this->render('api/index.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
     /**
      * @Route("/api/articles",name ="api",methods={"GET"})
      */
@@ -120,4 +135,5 @@ class APIController extends AbstractController
         $entityManager->flush();
         return new Response('ok');
     }
+
 }
