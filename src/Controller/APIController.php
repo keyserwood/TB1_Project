@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Serializer;
 class APIController extends AbstractController
 {
     /**
-     * @Route("/api/articles", name="api",methods={"GET})
+     * @Route("/api/articles",name ="api",methods={"GET"})
      */
     public function liste(ArticlesRepository $articlesRepository)
     {
@@ -77,5 +77,46 @@ class APIController extends AbstractController
                 return new Response('ok', 201);
         } return new Response('Failed', 404);
     }
-
+    /**
+     * @Route("/api/article/editer/{id}", name="api_edit", methods={"PUT"})
+     */
+    public function editArticle(?Articles $article, Request $request)
+    {
+        // On vérifie si la requête est une requête Ajax
+        if($request->isXmlHttpRequest()) {
+         // On décode les données envoyées
+            $donnees = json_decode($request->getContent());
+            // On initialise le code de réponse
+            $code = 200;
+            // Si l'article n'est pas trouvé
+            if(!$article){
+            // On instancie un nouvel article
+                $article = new Articles();
+            // On change le code de réponse
+                $code = 201;
+            }
+          // On hydrate l'objet
+            $article->setTitle($donnees->titre);
+            $article->setContent($donnees->contenu);
+            $article->setFeaturedImage($donnees->image);
+            $user = $this->getDoctrine()->getRepository(Users::class)->find(1);
+            $article->setAuthor($user);
+            // On sauvegarde en base
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+             // On retourne la confirmation
+            return new Response('ok', $code);
+        } return new Response('Failed', 404);
+    }
+    /**
+     * @Route("/api/article/delete/{id}", name="supprime", methods={"DELETE"})
+     */
+    public function removeArticle(Articles $article)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($article);
+        $entityManager->flush();
+        return new Response('ok');
+    }
 }
