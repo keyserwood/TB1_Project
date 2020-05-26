@@ -97,7 +97,6 @@ class APIController extends AbstractController
     /**
      * @Route("/api/article/editer/{id}", name="api_edit", methods={"GET"})
      */
-    // TODO: Contrôle sur les données
     public function editArticle(?Articles $article, Request $request)
     {
         // On vérifie si la requête est une requête Ajax
@@ -130,7 +129,6 @@ class APIController extends AbstractController
     /**
      * @Route("/api/article/delete/{id}", name="api_delete", methods={"DELETE"})
      */
-    // TODO : Rajouter le code de réponse HTTP 200 ok
     public function removeArticle(Articles $article,Request $request,ManagerRegistry $managerRegistry)
     {
         if($this->isCsrfTokenValid("SUP".$article->getId(),$request->get('_token')))
