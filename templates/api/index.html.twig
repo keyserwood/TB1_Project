@@ -23,6 +23,7 @@
                 <form method="post" action="{{ path('api_delete',{'id':article.id}) }}" onsubmit="return confirm
 ('Confirmer la suppression');">
                     <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('SUP'~article.id) }}">
                     <input type="submit" class="btn btn-danger material-icons" value="delete">
                 </form>
 

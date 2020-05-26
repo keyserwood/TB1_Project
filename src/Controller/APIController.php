@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\Users;
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -96,6 +97,7 @@ class APIController extends AbstractController
     /**
      * @Route("/api/article/editer/{id}", name="api_edit", methods={"GET"})
      */
+    // TODO: Contrôle sur les données
     public function editArticle(?Articles $article, Request $request)
     {
         // On vérifie si la requête est une requête Ajax
@@ -128,12 +130,20 @@ class APIController extends AbstractController
     /**
      * @Route("/api/article/delete/{id}", name="api_delete", methods={"DELETE"})
      */
-    public function removeArticle(Articles $article)
+    // TODO : Rajouter le code de réponse HTTP 200 ok
+    public function removeArticle(Articles $article,Request $request,ManagerRegistry $managerRegistry)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($article);
-        $entityManager->flush();
-        return new Response('ok');
+        if($this->isCsrfTokenValid("SUP".$article->getId(),$request->get('_token')))
+        {
+            $code =200;
+            $em = $managerRegistry->getManager();
+            $em->remove($article);
+            $em->flush();
+            $this->addFlash("success","La suppression a été effectuée");
+            return new Response('ok',$code);
+
+        }
+
     }
 
 }
